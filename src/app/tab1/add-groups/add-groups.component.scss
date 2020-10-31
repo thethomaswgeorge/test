@@ -1,0 +1,13 @@
+.outer-container {
+  padding: 15px;
+  box-sizing:border-box;
+  text-align: center;
+
+  .image-container {
+    width: 200px;
+    display: inline-block;
+    height: 200px;
+    background-color: #222;
+    border-radius: 6px;
+  }
+}
