@@ -1,0 +1,27 @@
+<ion-content>
+  <h2 class="ion-text-center ion-margin ion-padding">Let's Get Started!</h2>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label>First Name</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Last Name</ion-label>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>E-mail Address</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" formControlName="passone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Confirm Password</ion-label>
+      <ion-input type="password" formControlName="passtwo"></ion-input>
+    </ion-item>
+    <small class="ion-margin ion-text-center" *ngIf="checkPassword">Please check your passwords and make sure they match</small>
+    <ion-button [disabled]="form.invalid" expand="block" (click)="submit()" class="ion-margin">Submit</ion-button>
+  </form>
+</ion-content>

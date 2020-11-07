@@ -8,17 +8,27 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <h3 class="ion-margin">Created</h3>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
-    </ion-card-header>
+  <h2 class="ion-margin">Created</h2>
+  <div *ngIf="created.length">
+    <ion-card *ngFor="let group of created">
+      <ion-card-header>
+        <ion-card-subtitle>{{ group.subtitle }}</ion-card-subtitle>
+        <ion-card-title>{{ group.name }}</ion-card-title>
+      </ion-card-header>
 
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-  </ion-card>
-  <h3 class="ion-margin">Joined</h3>
+      <ion-card-content>
+        {{ group.desc }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="ion-text-center ion-padding" *ngIf="!created.length">
+    <h4>Sorry, you currently have not created any groups</h4>
+  </div>
+  <h2 class="ion-margin">Joined</h2>
+  <div *ngIf="joined.length">
+
+  </div>
+  <div *ngIf="!joined.length">
+    <h4>Sorry, you currently have not joined any groups</h4>
+  </div>
 </ion-content>
