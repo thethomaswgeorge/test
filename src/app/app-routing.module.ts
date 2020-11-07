@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AddGroupsComponent } from './tab1/add-groups/add-groups.component';
 import { EditProfileComponent } from './tab2/edit-profile/edit-profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
@@ -13,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule),
   },
   {
     path: 'auth',
@@ -21,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'add-groups',
-    component: AddGroupsComponent,
+    loadChildren: () => import('./tab1/add-group/add-group.module').then( m => m.AddGroupPageModule),
   },
   {
     path: 'edit-profile',
@@ -30,7 +28,7 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then(  m => m.RegisterPageModule),
-  }
+  },
 ];
 @NgModule({
   imports: [

@@ -14,10 +14,6 @@ export class Tab1Page {
   constructor(
       private af: AngularFireAuth
   ) {
-    this.af.user.subscribe(val => {
-      console.log(val);
-    });
-    console.log('test', this.af.user);
   }
 
 

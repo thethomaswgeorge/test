@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-title>Add Group</ion-title>
+    <ion-buttons slot="start">
+      <ion-button href="tabs/tab1">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <div class="outer-container">
+    <div class="image-container">
+      <img *ngIf="groupImage" src="" alt="">
+    </div>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="search()">
+    <ion-item>
+      <ion-label position="floating">Group ID</ion-label>
+      <ion-input type="text" formControlName="search"></ion-input>
+    </ion-item>
+  </form>
+  <ion-button expand="block" class="ion-margin" [disabled]="form.invalid" (click)="search()">Search</ion-button>
+  <ion-button expand="block" class="ion-margin" color="tertiary" (click)="scanQRCode()">Scan QR Code</ion-button>
+</ion-content>

@@ -1,3 +1,36 @@
-<p>
-  create-event works!
-</p>
+<ion-content [fullscreen]="true">
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>
+                Create Group
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <form [formGroup]="form">
+        <ion-item>
+            <ion-label>Group Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Group slug (used to add your group)</ion-label>
+            <ion-input type="text" formControlName="slug"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label></ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button class="ion-margin ion-text-center" expand="block" color="warning">Cancel</ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button class="ion-margin ion-text-center" expand="block" color="success" (click)="dismiss()">Submit</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

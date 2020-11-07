@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: Tab1Page,
+  },
+  {
+    path: 'add-group',
+    loadChildren: () => import('./add-group/add-group.module').then( m => m.AddGroupPageModule)
   }
 ];
 

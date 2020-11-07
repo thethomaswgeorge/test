@@ -22,12 +22,11 @@ export class AuthGuardService implements CanActivate {
         const user = await this.isLoggedIn();
 
         const authInfo = {
-            authenticated: true,
+            authenticated: false,
         };
 
         if (user) {
             authInfo.authenticated = true;
-            console.log("Can Activate");
         }
 
         if (!authInfo.authenticated) {
