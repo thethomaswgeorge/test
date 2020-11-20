@@ -46,7 +46,6 @@ export class AddGroupPage implements OnInit {
         const groupQ = this.afs.collection<Group>('groups', ref => ref.where('slug', '==', searchValue).limit(1));
         const groupSnap = await groupQ.get().toPromise();
         if (groupSnap.docs.length) {
-            console.log('Search ', groupSnap.docs[0].data());
             this.addGroup(groupSnap.docs);
         } else {
             if (this.platform.is('cordova')) {
@@ -57,7 +56,23 @@ export class AddGroupPage implements OnInit {
     }
 
     async addGroup(values) {
-        const usersGroups = this.afs.collection(`/users/${this.user.id}/groups`);
-        await usersGroups.doc(values.id).set(values);
+        const tester = `/users/${this.user.id}/groups/`;
+        console.warn(tester);
+        const newuser = `/users/${this.user.id}`;
+        const newUser = {
+            id: this.user.id,
+            fname: this.user.fname,
+            lname: this.user.lname,
+            email: this.user.email,
+            phone: this.user.phone,
+            address: this.user.address,
+            profession: this.user.profession,
+            groups: {
+                ...this.user.groups,
+                ...values
+            }
+        }
+        const usersGroups = this.afs.collection<Group>(newuser);
+        await usersGroups.doc(values.id).set(newUser);
     }
 }

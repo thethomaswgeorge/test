@@ -18,10 +18,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { environment } from '../environments/environment';
 import {ListUsersGroupComponent} from './components/list-users-group/list-users-group.component';
+import {EditProfileComponent} from './tab2/edit-profile/edit-profile.component';
 @NgModule({
     declarations: [
         AppComponent,
         ListUsersGroupComponent,
+        EditProfileComponent,
     ],
     entryComponents: [],
     imports: [
@@ -41,6 +43,7 @@ import {ListUsersGroupComponent} from './components/list-users-group/list-users-
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     ],
     exports: [
+        EditProfileComponent,
         ListUsersGroupComponent,
     ],
     bootstrap: [AppComponent],
