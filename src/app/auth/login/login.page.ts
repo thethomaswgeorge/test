@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: 'app-login',
@@ -17,16 +18,19 @@ export class LoginPage implements OnInit {
   private currentUser: any;
   errorWithLogin = false;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) {
+  constructor(
+    private router: Router, 
+    private afAuth: AngularFireAuth,
+    private storage: Storage) {
   }
 
 
   async ngOnInit() {
     this.currentUser = await this.afAuth.currentUser;
-
-    if (this.currentUser !== null) {
-      await this.router.navigate(['dashboard']);
-    }
+    this.storage.get('user')
+    .then(async (val) => {
+      await this.router.navigate(['/']);
+    });
   }
 
   async login() {

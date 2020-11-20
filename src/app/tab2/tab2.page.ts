@@ -1,7 +1,10 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
+import { Storage } from "@ionic/storage";
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-tab2',
@@ -13,7 +16,11 @@ export class Tab2Page {
     constructor(
         private router: Router,
         public modalCtrl: ModalController,
+        private auth: AngularFireAuth,
+        private storage: Storage,
     ) {
+        this.storage.get('user')
+        .then(val => console.error(val));
     }
 
     searchForEvent() {

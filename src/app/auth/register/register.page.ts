@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users/users.service';
+import { Storage } from "@ionic/storage";
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -15,15 +16,18 @@ export class RegisterPage implements OnInit {
         firstName: new FormControl('', [Validators.required]),
         lastName: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
+        phone: new FormControl(''),
         passone: new FormControl('', [Validators.required]),
         passtwo: new FormControl('', [Validators.required]),
     });
     checkPassword = false;
+    weak = false;
 
     constructor(
         private us: UsersService,
         private auth: AngularFireAuth,
         private firestore: AngularFirestore,
+        private storage: Storage,
         private router: Router,
     ) {
     }
@@ -35,18 +39,20 @@ export class RegisterPage implements OnInit {
         if (this.form.valid && (this.form.get('passone').value === this.form.get('passtwo').value)) {
             const userInfo = {
                 id: this.firestore.createId(),
-                fname: this.form.get('fname').value,
-                lname: this.form.get('lname').value,
+                fname: this.form.get('firstName').value,
+                lname: this.form.get('lastName').value,
+                phone: this.form.get('phone').value,
                 email: this.form.get('email').value,
-                phone: '',
             };
 
             this.auth.createUserWithEmailAndPassword(this.form.get('email').value, this.form.get('passone').value).then(async (r) => {
                 const userCollections$ = this.firestore.collection('/users');
                 await userCollections$.doc(userInfo.id).set(userInfo);
+
+                this.storage.set('user', userInfo);
                 this.router.navigateByUrl('/');
             }).catch(e => {
-                console.log(e);
+                (e.code === "auth/weak-password") ? (this.weak = true) : '';
             });
         } else {
             this.checkPassword = true;

@@ -1,3 +1,4 @@
+import { CreateEventComponent } from './tab2/create-event/create-event.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { EditProfileComponent } from './tab2/edit-profile/edit-profile.component';
@@ -26,9 +27,14 @@ const routes: Routes = [
     component: EditProfileComponent,
   },
   {
+    path: 'create-group',
+    loadChildren: () => import('./create-group/create-group.module').then( m => m.CreateGroupPageModule),
+  },
+  {
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then(  m => m.RegisterPageModule),
   },
+
 ];
 @NgModule({
   imports: [

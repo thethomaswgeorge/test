@@ -14,6 +14,10 @@
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label>Phone Number</ion-label>
+      <ion-input type="phone" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label>Password</ion-label>
       <ion-input type="password" formControlName="passone"></ion-input>
     </ion-item>
@@ -22,6 +26,7 @@
       <ion-input type="password" formControlName="passtwo"></ion-input>
     </ion-item>
     <small class="ion-margin ion-text-center" *ngIf="checkPassword">Please check your passwords and make sure they match</small>
+    <small *ngIf="weak">Password should be at least 6 characters</small>
     <ion-button [disabled]="form.invalid" expand="block" (click)="submit()" class="ion-margin">Submit</ion-button>
   </form>
 </ion-content>

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+          Create Group
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form">
+      <div class="ion-padding">
+          <ion-label>Group Name</ion-label>
+          <ion-input type="text" formControlName="name" placeholder="Type here"></ion-input>
+      </div>
+      <div class="ion-padding global-input">
+          <ion-label>Group slug (used to add your group)</ion-label>
+          <ion-input type="text" formControlName="slug" placeholder="Type here"></ion-input>
+      </div>
+      <div>
+      </div>
+      <ion-grid>
+          <ion-row>
+              <ion-col>
+                  <ion-button class="ion-margin ion-text-center" expand="block" color="warning" (click)="dismiss()">Cancel</ion-button>
+              </ion-col>
+              <ion-col>
+                  <ion-button class="ion-margin ion-text-center" expand="block" color="success" (click)="submit()">Create</ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>
