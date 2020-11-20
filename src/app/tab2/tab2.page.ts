@@ -1,10 +1,11 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
-import { Storage } from "@ionic/storage";
+import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import {CreateGroupPage} from '../create-group/create-group.page';
 
 @Component({
     selector: 'app-tab2',
@@ -28,13 +29,6 @@ export class Tab2Page {
     }
 
     async createEvent() {
-        const modal = await this.modalCtrl.create({
-            component: CreateEventComponent,
-        });
-
-        return await modal.present();
-
-        const {data} = await modal.onWillDismiss();
-        console.log('Returned Data', data);
+        this.router.navigateByUrl('create-group');
     }
 }

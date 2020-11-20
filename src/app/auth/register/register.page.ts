@@ -42,6 +42,7 @@ export class RegisterPage implements OnInit {
                 fname: this.form.get('firstName').value,
                 lname: this.form.get('lastName').value,
                 phone: this.form.get('phone').value,
+                groups: {},
                 email: this.form.get('email').value,
             };
 

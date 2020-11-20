@@ -18,7 +18,9 @@
           <ion-label>Group slug (used to add your group)</ion-label>
           <ion-input type="text" formControlName="slug" placeholder="Type here"></ion-input>
       </div>
-      <div>
+      <div class="ion-padding">
+          <ion-label>Description</ion-label>
+          <ion-textarea formControlName="desc"></ion-textarea>
       </div>
       <ion-grid>
           <ion-row>
@@ -26,7 +28,7 @@
                   <ion-button class="ion-margin ion-text-center" expand="block" color="warning" (click)="dismiss()">Cancel</ion-button>
               </ion-col>
               <ion-col>
-                  <ion-button class="ion-margin ion-text-center" expand="block" color="success" (click)="submit()">Create</ion-button>
+                  <ion-button class="ion-margin ion-text-center" expand="block" color="success" [disabled]="form.invalid" (click)="submit()">Create</ion-button>
               </ion-col>
           </ion-row>
       </ion-grid>
