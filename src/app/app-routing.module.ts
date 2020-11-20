@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { EditProfileComponent } from './tab2/edit-profile/edit-profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import {ListUsersGroupComponent} from './components/list-users-group/list-users-group.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./tab1/add-group/add-group.module').then( m => m.AddGroupPageModule),
   },
   {
+    path: 'group/:id',
+    component: ListUsersGroupComponent
+  },
+  {
     path: 'edit-profile',
     component: EditProfileComponent,
   },
@@ -34,6 +39,19 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then(  m => m.RegisterPageModule),
   },
+  {
+    path: 'list-group',
+    loadChildren: () => import('./list-group/list-group.module').then( m => m.ListGroupPageModule)
+  },
+  {
+    path: 'group-info',
+    loadChildren: () => import('./group-info/group-info.module').then( m => m.GroupInfoPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+
 
 ];
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../../services/users/users.service';
-import { Storage } from "@ionic/storage";
+import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -16,6 +16,7 @@ export class RegisterPage implements OnInit {
         firstName: new FormControl('', [Validators.required]),
         lastName: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
+        profession: new FormControl(''),
         phone: new FormControl(''),
         passone: new FormControl('', [Validators.required]),
         passtwo: new FormControl('', [Validators.required]),
@@ -41,6 +42,7 @@ export class RegisterPage implements OnInit {
                 id: this.firestore.createId(),
                 fname: this.form.get('firstName').value,
                 lname: this.form.get('lastName').value,
+                profession: this.form.get('profession').value,
                 phone: this.form.get('phone').value,
                 groups: {},
                 email: this.form.get('email').value,

@@ -17,8 +17,12 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { environment } from '../environments/environment';
+import {ListUsersGroupComponent} from './components/list-users-group/list-users-group.component';
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+        ListUsersGroupComponent,
+    ],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -35,6 +39,9 @@ import { environment } from '../environments/environment';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    ],
+    exports: [
+        ListUsersGroupComponent,
     ],
     bootstrap: [AppComponent],
 })

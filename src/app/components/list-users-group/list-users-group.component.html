@@ -1,0 +1,25 @@
+<ion-header *ngIf="!!group">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{ group.name }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content >
+    <ion-list *ngIf="!!group && !!group.users && group.users.length">
+        <ion-item *ngFor="let user of group.users">
+            <ion-avatar slot="start">
+                <img src="./avatar-han.png">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{ user.fname }} {{ user.lname }}</h2>
+                <h3 *ngIf="!!user.profession">{{ user.profession }}</h3>
+                <p>I've got enough on my plate as it is, and I...</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <span *ngIf="!!group && !!group.users && !group.users.length">There are currently no users in this group</span>
+</ion-content>

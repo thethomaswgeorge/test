@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Group } from '../interface/group';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -17,6 +18,7 @@ export class Tab1Page {
       private af: AngularFireAuth,
       private firestore: AngularFirestore,
       private storage: Storage,
+      private router: Router
   ) {
     this.getInfo();
   }
@@ -24,7 +26,6 @@ export class Tab1Page {
   async getInfo() {
     this.storage.get('user')
         .then(async (user) => {
-          console.warn(user);
           const currentEventsQuery = this.firestore.collection<Group>('groups', ref => ref.where('userId', '==', user.id));
           const currentEventsSnapshot = await currentEventsQuery.get().toPromise();
           currentEventsSnapshot.forEach((event) => {
@@ -33,5 +34,8 @@ export class Tab1Page {
         });
   }
 
+  async moreInfo(id) {
+        this.router.navigateByUrl(`group/${id}`);
+  }
 
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Platform } from '@ionic/angular';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Group } from '../../interface/group';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Platform} from '@ionic/angular';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {Group} from '../../interface/group';
 import {Storage} from '@ionic/storage';
+import {User} from '../../interface/user';
 
 @Component({
     selector: 'app-add-group',
@@ -17,7 +18,7 @@ export class AddGroupPage implements OnInit {
         search: new FormControl('', [Validators.required]),
     });
 
-    public user = {};
+    public user: User;
 
     constructor(
         public platform: Platform,
@@ -27,7 +28,7 @@ export class AddGroupPage implements OnInit {
         this.storage.get('user')
             .then((val) => {
                 this.user = val;
-            })
+            });
     }
 
     ngOnInit() {
@@ -56,7 +57,7 @@ export class AddGroupPage implements OnInit {
     }
 
     async addGroup(values) {
-        //const usersGroups = this.afs.collection(`/users/${this.user.id}/groups`);
-       // await usersGroups.doc(values.id).set(values);
+        const usersGroups = this.afs.collection(`/users/${this.user.id}/groups`);
+        await usersGroups.doc(values.id).set(values);
     }
 }

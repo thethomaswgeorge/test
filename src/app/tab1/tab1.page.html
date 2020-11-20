@@ -10,7 +10,7 @@
 
   <h2 class="ion-margin">Created</h2>
   <div *ngIf="created.length">
-    <ion-card *ngFor="let group of created">
+    <ion-card *ngFor="let group of created" (click)="moreInfo(group.id)">
       <ion-card-header>
         <ion-card-subtitle>{{ group.subtitle }}</ion-card-subtitle>
         <ion-card-title>{{ group.name }}</ion-card-title>

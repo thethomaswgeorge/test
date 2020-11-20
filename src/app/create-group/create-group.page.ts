@@ -49,7 +49,9 @@ export class CreateGroupPage implements OnInit {
                 id: this.firestore.createId(),
                 name: this.form.get('name').value,
                 slug: this.form.get('slug').value.toLowerCase(),
-                users: {},
+                users: [
+                    {...this.user},
+                ],
                 userId: this.user.id,
             };
             const groupCollection$ = this.firestore.collection('/groups');
